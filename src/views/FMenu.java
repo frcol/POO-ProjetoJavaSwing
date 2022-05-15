@@ -42,9 +42,10 @@ public class FMenu extends javax.swing.JFrame {
         alterarSenha = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         menuSair = new javax.swing.JMenuItem();
+        imTest = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
-        CadCategoria = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
+        imCadProd = new javax.swing.JMenuItem();
+        imProduto = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
 
@@ -93,25 +94,33 @@ public class FMenu extends javax.swing.JFrame {
         });
         jMenu1.add(menuSair);
 
+        imTest.setText("Test");
+        imTest.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                imTestActionPerformed(evt);
+            }
+        });
+        jMenu1.add(imTest);
+
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Cadastros");
 
-        CadCategoria.setText("Categoria");
-        CadCategoria.addActionListener(new java.awt.event.ActionListener() {
+        imCadProd.setText("Categoria");
+        imCadProd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CadCategoriaActionPerformed(evt);
+                imCadProdActionPerformed(evt);
             }
         });
-        jMenu2.add(CadCategoria);
+        jMenu2.add(imCadProd);
 
-        jMenuItem4.setText("Produto");
-        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+        imProduto.setText("Produto");
+        imProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem4ActionPerformed(evt);
+                imProdutoActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem4);
+        jMenu2.add(imProduto);
 
         jMenuBar1.add(jMenu2);
 
@@ -144,14 +153,14 @@ public class FMenu extends javax.swing.JFrame {
         
     }//GEN-LAST:event_alterarSenhaActionPerformed
 
-    private void CadCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CadCategoriaActionPerformed
+    private void imCadProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imCadProdActionPerformed
         // TODO add your handling code here:
         IConsultarCategoria categoria = new IConsultarCategoria();
         jDesktopPane1.add(categoria);
         categoria.setVisible(true);
-    }//GEN-LAST:event_CadCategoriaActionPerformed
+    }//GEN-LAST:event_imCadProdActionPerformed
 
-    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+    private void imProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imProdutoActionPerformed
         // TODO add your handling code here:
         IConsultarProduto produto = IConsultarProduto.getMyInstance();
         produto.pack();
@@ -162,7 +171,7 @@ public class FMenu extends javax.swing.JFrame {
         else{
             produto.moveToFront();
         }
-    }//GEN-LAST:event_jMenuItem4ActionPerformed
+    }//GEN-LAST:event_imProdutoActionPerformed
 
     private void menuSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuSairActionPerformed
         WindowEvent windowEvent = new WindowEvent(this, WindowEvent.WINDOW_CLOSING);
@@ -177,6 +186,18 @@ public class FMenu extends javax.swing.JFrame {
             setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         }
     }//GEN-LAST:event_formWindowClosing
+
+    private void imTestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imTestActionPerformed
+        Test w = Test.getMyInstance();
+        w.pack();
+        if(!w.isVisible()){
+            jDesktopPane1.add(w);
+            w.setVisible(true);
+        }
+        else{
+            w.moveToFront();
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_imTestActionPerformed
 
     /**
      * @param args the command line arguments
@@ -214,8 +235,10 @@ public class FMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenuItem CadCategoria;
     private javax.swing.JMenuItem alterarSenha;
+    private javax.swing.JMenuItem imCadProd;
+    private javax.swing.JMenuItem imProduto;
+    private javax.swing.JMenuItem imTest;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
@@ -223,7 +246,6 @@ public class FMenu extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JMenuItem menuSair;
     // End of variables declaration//GEN-END:variables
