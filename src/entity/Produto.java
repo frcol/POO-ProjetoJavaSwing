@@ -24,11 +24,8 @@ public class Produto implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "descricao")
     private String descricao;
-    @Column(name = "quantidade")
     private int quantidade;
-    @Column(name = "valorUnitatio")
     private double valorUnitatio;
     
     @ManyToOne

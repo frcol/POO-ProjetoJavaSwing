@@ -4,6 +4,8 @@
  */
 package views;
 
+import dao.UsuarioDAO;
+import entity.Usuario;
 import javax.swing.JOptionPane;
 
 /**
@@ -12,11 +14,17 @@ import javax.swing.JOptionPane;
  */
 public class Login extends javax.swing.JDialog {
     private boolean autenticado = false;
+    private Usuario usuarioLogado;
     
     public boolean getAutenticado() {
         return autenticado;
     }
     
+    public Usuario getUsuarioLogado() {
+        return usuarioLogado;
+    }
+    
+    // ==================================================
     public Login(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -127,12 +135,18 @@ public class Login extends javax.swing.JDialog {
     }//GEN-LAST:event_formWindowClosing
 
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
-        System.out.println(txtSenha.getPassword());
-        if (txtUsuario.getText().equals("FRC") && new String(txtSenha.getPassword()).equals("123")) {
-            autenticado = true;
-            dispose();
-        } else {
-            JOptionPane.showMessageDialog(this, "Usuário ou Senha errada");
+        UsuarioDAO usuDao = new UsuarioDAO();
+        try {
+            usuarioLogado = usuDao.selecionarPorUsuarioESenha(txtUsuario.getText(), new String(txtSenha.getPassword()));
+            
+            if (usuarioLogado != null) {
+                autenticado = true;
+                dispose();
+            } else {
+                JOptionPane.showMessageDialog(this, "Usuário ou Senha errada");
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
     }//GEN-LAST:event_btnEntrarActionPerformed
 

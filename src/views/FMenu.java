@@ -4,8 +4,10 @@
  */
 package views;
 
+import entity.Usuario;
 import java.awt.Toolkit;
 import java.awt.event.WindowEvent;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.WindowConstants;
 
@@ -14,16 +16,20 @@ import javax.swing.WindowConstants;
  * @author rafae
  */
 public class FMenu extends javax.swing.JFrame {
-
+    private Usuario usuarioLogado;
     /**
      * Creates new form FMenu
      */
     public FMenu() {
         Login login = new Login(this, true);
         login.setVisible(true);
-        
+        usuarioLogado = login.getUsuarioLogado();
         
         initComponents();
+        
+        lblUsuario.setText(usuarioLogado.getUsername());
+        
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
 
     /**
@@ -36,6 +42,7 @@ public class FMenu extends javax.swing.JFrame {
     private void initComponents() {
 
         jDesktopPane1 = new javax.swing.JDesktopPane();
+        lblUsuario = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu5 = new javax.swing.JMenu();
@@ -65,8 +72,11 @@ public class FMenu extends javax.swing.JFrame {
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 271, Short.MAX_VALUE)
+            .addGap(0, 260, Short.MAX_VALUE)
         );
+
+        lblUsuario.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblUsuario.setText("jLabel1");
 
         jMenu1.setText("Arquivo");
 
@@ -136,14 +146,22 @@ public class FMenu extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(jDesktopPane1)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jDesktopPane1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblUsuario))
         );
 
-        setBounds(0, 0, 416, 339);
+        setSize(new java.awt.Dimension(416, 339));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void alterarSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alterarSenhaActionPerformed
@@ -247,6 +265,7 @@ public class FMenu extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
+    private javax.swing.JLabel lblUsuario;
     private javax.swing.JMenuItem menuSair;
     // End of variables declaration//GEN-END:variables
 }

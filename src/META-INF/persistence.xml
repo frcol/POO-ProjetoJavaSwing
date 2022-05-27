@@ -4,6 +4,7 @@
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>entity.CategoriaProduto</class>
     <class>entity.Produto</class>
+    <class>entity.Usuario</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3307/exemploapi?useTimezone=true&amp;serverTimezone=UTC"/>
       <property name="javax.persistence.jdbc.user" value="root"/>
