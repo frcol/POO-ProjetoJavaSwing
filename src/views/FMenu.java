@@ -53,7 +53,6 @@ public class FMenu extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
         imCadProd = new javax.swing.JMenuItem();
         imProduto = new javax.swing.JMenuItem();
-        jMenu3 = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -133,9 +132,6 @@ public class FMenu extends javax.swing.JFrame {
         jMenu2.add(imProduto);
 
         jMenuBar1.add(jMenu2);
-
-        jMenu3.setText("Relatórios");
-        jMenuBar1.add(jMenu3);
 
         jMenu4.setText("Sobre");
         jMenuBar1.add(jMenu4);
@@ -260,7 +256,6 @@ public class FMenu extends javax.swing.JFrame {
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
