@@ -68,11 +68,11 @@ public class FMenu extends javax.swing.JFrame {
         jDesktopPane1.setLayout(jDesktopPane1Layout);
         jDesktopPane1Layout.setHorizontalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 444, Short.MAX_VALUE)
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 260, Short.MAX_VALUE)
+            .addGap(0, 287, Short.MAX_VALUE)
         );
 
         lblUsuario.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -160,7 +160,7 @@ public class FMenu extends javax.swing.JFrame {
                 .addComponent(lblUsuario))
         );
 
-        setSize(new java.awt.Dimension(416, 339));
+        setSize(new java.awt.Dimension(458, 395));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 

@@ -7,6 +7,8 @@ package views;
 import dao.ProdutoDAO;
 import entity.Produto;
 import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.table.TableModel;
 import utils.TableModelCreator;
 
@@ -15,6 +17,7 @@ import utils.TableModelCreator;
  * @author rafae
  */
 public class IConsultarProduto extends javax.swing.JInternalFrame {
+    private int idSelecionado;
     private static IConsultarProduto myInstance;
     
     public static IConsultarProduto getMyInstance(){
@@ -39,6 +42,12 @@ public class IConsultarProduto extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btnNova = new javax.swing.JButton();
+        btnEditar = new javax.swing.JButton();
+        btnExcluir = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tbProdutos = new javax.swing.JTable();
+
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
@@ -62,25 +71,140 @@ public class IConsultarProduto extends javax.swing.JInternalFrame {
             }
         });
 
+        btnNova.setText("Nova");
+        btnNova.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNovaActionPerformed(evt);
+            }
+        });
+
+        btnEditar.setText("Editar");
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarActionPerformed(evt);
+            }
+        });
+
+        btnExcluir.setText("Excluir");
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirActionPerformed(evt);
+            }
+        });
+
+        tbProdutos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        tbProdutos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbProdutosMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tbProdutos);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 538, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 744, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnNova)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnEditar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnExcluir)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 360, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnNova)
+                    .addComponent(btnEditar)
+                    .addComponent(btnExcluir))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(58, 58, 58))
         );
 
-        setBounds(0, 0, 554, 390);
+        setBounds(0, 0, 798, 498);
     }// </editor-fold>//GEN-END:initComponents
 
     private void formInternalFrameActivated(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameActivated
-       
+       atualizarTabela();
     }//GEN-LAST:event_formInternalFrameActivated
 
+    private void btnNovaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovaActionPerformed
+        CadastroProduto cadastroProd = new CadastroProduto(null, true, null);
+        cadastroProd.setVisible(true);
+        
+        atualizarTabela();
+    }//GEN-LAST:event_btnNovaActionPerformed
+
+    private void tbProdutosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbProdutosMouseClicked
+        JTable source = (JTable)evt.getSource();
+        
+        int row = source.rowAtPoint( evt.getPoint() );
+        int column = tbProdutos.convertColumnIndexToView(tbProdutos.getColumn("Id ").getModelIndex());
+                 
+        String s = source.getModel().getValueAt(row, column)+"";
+        JOptionPane.showMessageDialog(null, s);
+
+        idSelecionado = Integer.parseInt(s);
+        
+        btnEditar.setEnabled(true);
+        btnExcluir.setEnabled(true);
+
+    }//GEN-LAST:event_tbProdutosMouseClicked
+
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+        if (JOptionPane.showConfirmDialog(this, "Deseja Realmente Apagar?", "Atenção", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+            ProdutoDAO produtoDAO = new ProdutoDAO();
+            Produto prod = produtoDAO.selecionarPorCodigo(idSelecionado);
+            
+            produtoDAO.excluir(prod);
+            atualizarTabela();
+        }
+    }//GEN-LAST:event_btnExcluirActionPerformed
+
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+        Produto prod = new ProdutoDAO().selecionarPorCodigo(idSelecionado);
+        
+        CadastroProduto cadastroProd = new CadastroProduto(null, true, prod);
+        cadastroProd.setVisible(true);
+        atualizarTabela();
+    }//GEN-LAST:event_btnEditarActionPerformed
+
+    private void atualizarTabela() {
+        try {
+            List<Produto> lstProdutos = new ProdutoDAO().selecionarTodos();
+            
+            TableModel tableModelProdutos = TableModelCreator.createTableModel(Produto.class, lstProdutos, null);
+            tbProdutos.setModel(tableModelProdutos);
+        } catch (Exception e) {
+            
+        }
+
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnEditar;
+    private javax.swing.JButton btnExcluir;
+    private javax.swing.JButton btnNova;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tbProdutos;
     // End of variables declaration//GEN-END:variables
 }
